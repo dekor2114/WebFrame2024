@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-{% load static %}
+{% load static %}<!--스테틱 연결(css파일 연결)-->
 <html lang="en">
     <head>
         <meta charset="utf-8" />
@@ -8,17 +8,17 @@
         <meta name="author" content="" />
         <title>Blog list</title>
 
-        <link href="{% static 'blog/bootstrap4/bootstrap.min.css'%}" type="text/css" rel="stylesheet">
+        <link href="{% static 'blog/bootstrap4/bootstrap.min.css'%}" type="text/css" rel="stylesheet"><!--{% static '경로(각 static폴더에 연결)'%}-->
         <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
         <script src="https://kit.fontawesome.com/88f491cef1.js" crossorigin="anonymous"></script>
     </head>
     <body>
-        <!-- Responsive navbar-->
+        <!--맨위에 메뉴 바-->
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container">
-                <a class="navbar-brand" href="/">Do it Django</a>
+                <a class="navbar-brand" href="/">Do it Django</a><!--href="/"이건 그냥 아무것도 안써있는거-->
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
                 </button>
@@ -28,7 +28,7 @@
                     <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link" href="/blog">Blog</a>
+                    <a class="nav-link" href="/blog">Blog</a><!--href="bolg"라고 쓰면 주소/blog/blog되서 404뜸-->
                     </li>
                     <li class="nav-item">
                     <a class="nav-link" href="/about_me">About me</a>
@@ -46,7 +46,7 @@
                 </ul>
                 <ul class="navbar-nav ml-auto"> <!--마진을 auto로 하면 오른쪽으로 고정-->
                     <li class="nav-item">
-                        <a class="nav-link" href="" data-toggle="modal" data-target="#LoginModal">Log In</a>
+                        <a class="nav-link" href="" data-toggle="modal" data-target="#LoginModal">Log In</a><!--모달 연결 a태그 확인.(이름 봐야함)-->
                     </li>
                 </ul>
 
@@ -90,26 +90,26 @@
         <!-- Page header with logo and tagline-->
         <header class="py-5 bg-light border-bottom mb-4">
             <div class="container">
-                <div class="text-center my-5">
+                <div class="text-center my-2"><!--my는 m이 마진, y가 y축, 5가 폰트 크기-->
                     <h1 class="fw-bolder">Welcome to Blog Home!</h1>
                 </div>
             </div>
         </header>
-        <!-- Page content-->
+        <!-- 메인, post내용 보이게 하는 곳-->
         <div class="container">
             <div class="row">
-                <!-- Blog entries-->
+                <!-- 메인-->
                 <div class="col-lg-8"><!--8대-->
-                    {% for p in pst %}
-                    <!-- Featured blog post-->
-                    <div class="card mb-4"><!--8대-->
-                        <img class="card-img-top" src="https://picsum.photos/seed/{{p.pk}}/900/300" alt="..." />
+                    {% for p in pst %}<!--for 문돌릴려면 이렇게 pst는 views에서 설정해줌.-->
+                    <!-- blog post main 미리보기-->
+                    <div class="card mb-4">
+                        <img class="card-img-top" src="https://picsum.photos/seed/{{p.pk}}/900/300" alt="..." /><!--{{p.pk}}이거 해당(blog)models들어가봐야함-->
                         <div class="card-body">
                             <div class="small text-muted">작성일 : {{ p.created_at}}</div>
                             <div class="small text-muted">수정일 : {{ p.updated_at}}</div>
                             <h2 class="card-title">{{p.title}}</h2>
                             <p class="card-text">{{p.content}}</p>
-                            <a class="btn btn-primary" href="{{p.get_absolute_url}}">Read more →</a>
+                            <a class="btn btn-primary" href="{{p.get_absolute_url}}">Read more →</a><!--href에도 이런식으로 가능, models에 등록 되어 있어야함-->
                         </div>
                     </div>
                     {% endfor %}
