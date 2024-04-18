@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Site</title>
+</head>
+<body>
+    <h1>BLOG List</h1>
+
+    {% for p in pst %}
+        <hr>
+        <h3><a href="{{p.get_absolute_url}}">{{p.title}}</a></h3>
+        <h4>date</h4>
+        <hr>
+        <p> {{p}} </p>
+        <hr>
+    {% endfor %}
+</body>
+</html>
