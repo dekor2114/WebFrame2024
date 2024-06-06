@@ -3,21 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog Site</title>
+    <title>Blog</title>
 </head>
 <body>
-    <h1>BLOG List</h1>
-
-    {% for p in pst %}
-        <hr>
-        <h3><a href="{{p.get_absolute_url}}">{{p.title}}</a></h3>
-        <h4>date</h4>
-        <hr>
-        <p> {{p}} </p>
-        <hr>
+    <h1>Blog list</h1>
+    {% for p in posts %}
+        <!--<hr> p.get_absolute_url() ->/posts/1/-->
+        <h2>제목:<a href="{{ p.get_absolute_url }}">{{ p.title }}</a></h2> <!--변수 출력에는 중괄호가 2개가 들어가고 코드 작성에는 %가 들어간다.-->
+        <h4>등록일: {{ p.created_at }}</h4>
+        <h4>수정일: {{ p.updated_at }}</h4>  
+        <p>내용: {{ p.content }}</p>
     {% endfor %}
+
+
 </body>
 </html>
-<!--python manage.py startapp exam1 이거 다음 sttings.py에서 추가, exam1에 models.py도 설정 다음에-->
-<!--python manage.py makemigrations, python manage.py migrate-->
-<!--exam1에 admin.py에 post추가-->
