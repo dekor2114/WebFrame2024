@@ -9,6 +9,8 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
+#######!!!!!!!!!!!!!!!앱 만들면 여기에 등록!!!!!!!!!!!!!!!!!!!!!!!!
+##################항상 디비 만지면 migration#################
 
 from pathlib import Path
 
@@ -27,8 +29,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
+# 앱만들면 무조건 여기에 등록
 
 INSTALLED_APPS = [ #새로 설치하는 앱목록 / 앱 만들려면 여기에 등록 해줘야함.
     'django.contrib.admin',
@@ -41,6 +43,8 @@ INSTALLED_APPS = [ #새로 설치하는 앱목록 / 앱 만들려면 여기에 �
     'single_pages',
     'pr',
     'exam2',
+    'crispy_forms',
+    "crispy_bootstrap4",
 ]
 
 MIDDLEWARE = [
@@ -58,7 +62,7 @@ ROOT_URLCONF = 'WebDjango.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [], # 공백 = 기본적인 경로로 간다 앱 아래에 있는 tmeplate를 들어가서 가겠다.(여기서 베이스 디렉토리 경로를 바꾼다.)
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -121,7 +125,24 @@ USE_TZ = False
 
 STATIC_URL = 'static/'
 
+MEDIA_URL = "/media/"
+#디렉토리를 만들어주고 연결해준다. \ 미디어를 저장하는 경로를 설정해주는 부분 \ 경로 형태로 합쳐라 \ 앞에 다다른 부분은 BASE하고 뒤에 붙인게 세세한
+MEDIA_ROOT = os.path.join(BASE_DIR, '_media')
+# C:\WebFrame\github\WebFrame2024\_media가 된다 여기로 지정 
+
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"    
+
+CRISPY_TEMPLATE_PACK = "bootstrap4"
+
+# 환경 설정 순서
+# 1. 가상환경부터 만들고 (python -m venv 가상환경 이름)
+# 2. 가상환경에 장고 설치 (pip install django)
+# 3. 장고 프로젝트 생성하기 (django-admin startproject 프로젝트명 .)
+# 4. 새로 만들면 장고 데이터베이스 업데이트 (python manage.py migrate)
+# 5. 관리자 계정 설정 (python manage.py createsuperuser)
