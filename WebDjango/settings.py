@@ -39,6 +39,8 @@ INSTALLED_APPS = [ #새로 설치하는 앱목록 / 앱 만들려면 여기에 �
     'django.contrib.staticfiles',
     'blog',
     'single_pages',
+    'pr',
+    'exam2',
 ]
 
 MIDDLEWARE = [
